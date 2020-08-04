@@ -25,7 +25,7 @@ const StringResources = Object.freeze({
         bentang alam. Hasil simulasi tidak selalu akurat.',
     
     TransmitPowerHelpTitle: 'Transmission Power',
-    TransmitPowerHelpMessage: 'Transmission power adalah seberapa besar daya yang dipancarkan\
+    TransmitPowerHelpMessage: '<i>Transmission power</> adalah seberapa besar daya yang dipancarkan\
         oleh pemancar elektromagnetik, pada kasus ini adalah router Wi-Fi. Anda dapat mencari\
         informasi lebih lanjut pada laman resmi penyedia router Anda atau gunakan nilai umum 20 dBm.<br><br>\
         <img src="img/transmit_power.png" />'
