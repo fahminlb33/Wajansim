@@ -1,4 +1,4 @@
-# Wajansim📡 [Try Here](2)
+# Wajansim📡 [Live Demo](https://fahminlb33.github.io/Wajansim/)
 
 **⚠CODE IN THIS REPO IS NOT SCIENTIFICALLY PROVEN. RESEARCH IS STILL IN PROGRESS⚠**
 
@@ -29,13 +29,11 @@ This app uses basic SPA using Vue.js, nothing fancy😄
 
 ## 🏃‍ Running locally
 
-You can use [Live Server](1) for Visual Studio Code or use any kind of local web server.
+You can use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 
+for Visual Studio Code or use any kind of local web server.
 For example if you want to run this using `http-server`, you can do:
 
 ```
 npm install http-server -g
 http-server . -p 8000
 ```
-
-[1]: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
-[2]: https://fahminlb33.github.io/Wajansim/
