@@ -2,9 +2,8 @@
 
 **⚠CODE IN THIS REPO IS NOT SCIENTIFICALLY PROVEN. RESEARCH IS STILL IN PROGRESS⚠**
 
-This repository is a sample of microservice implementation in C# and .NET Core.
-I've built this service to demonstrate how we can create a fully working ecoosystem
-of application using .NET Core and Xamarin.
+This repository is a sample SPA web page to design *wajan bolik* satellite dish,
+a DIY Wi-Fi signal strength amplifier using household things.
 
 ## 🧐 What you'll find in this repo
 
