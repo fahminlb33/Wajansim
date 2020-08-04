@@ -1,4 +1,4 @@
-# Wajansim📡
+# Wajansim📡 [Try Here](2)
 
 **⚠CODE IN THIS REPO IS NOT SCIENTIFICALLY PROVEN. RESEARCH IS STILL IN PROGRESS⚠**
 
@@ -38,3 +38,4 @@ http-server . -p 8000
 ```
 
 [1]: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+[2]: https://fahminlb33.github.io/Wajansim/
