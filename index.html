@@ -6,7 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Fahmi Noor Fiqri">
-    <meta name="description" content="Wajansim adalah software untuk perancangan dan simulasi desain wajan bolik Wi-Fi.">
+    <meta name="description"
+        content="Wajansim adalah software untuk perancangan dan simulasi desain wajan bolik Wi-Fi.">
 
     <title>Wajansim: Wajan Bolik Wi-Fi Simulation</title>
 
@@ -32,7 +33,7 @@
 
 <body>
     <div class="container" id="app">
-        
+
         <section class="hero is-primary">
             <div class="hero-body">
                 <div class="container">
@@ -87,8 +88,8 @@
                                 <button class="button is-link" v-on:click="calculate">
                                     <span class="icon">
                                         <i class="fas fa-calculator"></i>
-                                      </span>
-                                      <span>Hitung</span>
+                                    </span>
+                                    <span>Hitung</span>
                                 </button>
                             </div>
                         </div>
@@ -124,7 +125,8 @@
                         <i class="fas fa-info fa-fw"></i> About
                     </p>
                     <div class="container">
-                        <p><b>Wajansim</b> dibuat oleh Fahmi Noor Fiqri. Saya <i>software engineer</i> dan <i>data scientist</i>.</p><br>
+                        <p><b>Wajansim</b> dibuat oleh Fahmi Noor Fiqri. Saya <i>software engineer</i> dan <i>data
+                                scientist</i>.</p><br>
                         <p><a href="https://kodesiana.com"><i class="fas fa-globe fa-fw"></i> Kodesiana.com</a></p>
                         <p><a href="https://github.com/fahminlb33"><i class="fab fa-github fa-fw"></i> GitHub</a></p>
                     </div>
@@ -142,12 +144,25 @@
                         </figure>
 
                         <h4 class="title is-4 mt-6">Trasmission Power Simulation</h4>
-                        <p>Simulasi received power pada USB Wi-Fi menggunakan satellite dish di atas. 
+                        <p>Simulasi received power pada USB Wi-Fi menggunakan satellite dish di atas.
                             Harap perhatikan peringatan pada bagian bantuan.</p><br>
                         <div class="field">
-                            <label class="label">Transmit power (dBm)</label>
-                            <div class="control">
-                                <input class="input" type="number" v-model.number="transmit_power">
+                            <div class="label is-normal">
+                                <label class="label">Jarak antara pemancar dan penerima (meter)</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="number" v-model.number="transmit_power">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <button class="button is-info" v-on:click="transmit_power_help">
+                                            <i class="fas fa-question"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="field">
@@ -174,16 +189,16 @@
                             <p class="control">
                                 <button class="button is-link" v-on:click="run_simulation">
                                     <span class="icon">
-                                    <i class="fas fa-play"></i>
-                                  </span>
-                                  <span>Jalankan</span></button>
+                                        <i class="fas fa-play"></i>
+                                    </span>
+                                    <span>Jalankan</span></button>
                             </p>
                             <p class="control">
                                 <button class="button is-warning is-light" v-on:click="simulation_help">
                                     <span class="icon">
                                         <i class="fas fa-question"></i>
-                                      </span>
-                                      <span>Bantuan</span>
+                                    </span>
+                                    <span>Bantuan</span>
                                 </button>
                             </p>
                         </div>
@@ -191,7 +206,8 @@
                         <div class="box has-background-info has-text-light" v-if="simulation">
                             <p v-if="!simulation.message">
                                 Jarak maksimum: {{ simulation.max_distance }}, {{ simulation.max_distance_power }} dBm |
-                                Jarak optimum: {{ simulation.optimal_distance }}, {{ simulation.optimal_distance_power }} dBm
+                                Jarak optimum: {{ simulation.optimal_distance }},
+                                {{ simulation.optimal_distance_power }} dBm
                             </p>
                             <p v-if="simulation.message">{{ simulation.message }}</p>
                         </div>
@@ -205,7 +221,7 @@
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
 
 
     </div>

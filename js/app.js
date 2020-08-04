@@ -22,7 +22,13 @@ const StringResources = Object.freeze({
         menjumlahkan <b>transmit power</b> dari pemancar dan dijumlahkan dengan <b>gain</b> dari\
         parabola, kemudian dikurangi <i>free-space path loss (FSPL)</i>.<br>Perlu diperhatikan\
         bahwa simulasi ini mengabaikan <i>loss</i> dari kedua pemancar dan tidak menghiraukan\
-        bentang alam. Hasil simulasi tidak selalu akurat.'
+        bentang alam. Hasil simulasi tidak selalu akurat.',
+    
+    TransmitPowerHelpTitle: 'Transmission Power',
+    TransmitPowerHelpMessage: 'Transmission power adalah seberapa besar daya yang dipancarkan\
+        oleh pemancar elektromagnetik, pada kasus ini adalah router Wi-Fi. Anda dapat mencari\
+        informasi lebih lanjut pada laman resmi penyedia router Anda atau gunakan nilai umum 20 dBm.<br><br>\
+        <img src="img/transmit_power.png" />'
 });
 
 var app = new Vue({
@@ -36,7 +42,7 @@ var app = new Vue({
             {key: 'Hasil akan muncul disini', value: null}
         ],
 
-        transmit_power: null,
+        transmit_power: 20,
         min_distance: null,
         max_distance: null,
         simulation: null,
@@ -131,6 +137,15 @@ var app = new Vue({
             Swal.fire({
                 title: StringResources.SimulationHelpTitle,
                 html: StringResources.SimulationHelpMessage,
+                icon: 'info',
+                confirmButtonText: 'Tutup'
+            });
+        },
+
+        transmit_power_help: function() {
+            Swal.fire({
+                title: StringResources.TransmitPowerHelpTitle,
+                html: StringResources.TransmitPowerHelpMessage,
                 icon: 'info',
                 confirmButtonText: 'Tutup'
             });
