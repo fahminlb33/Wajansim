@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wajansim</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+        integrity="sha256-aPeK/N8IHpHsvPBCf49iVKMdusfobKo2oxF8lRruWJg=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css"
+        integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    <style>
+        html,
+        body {
+            min-height: 100%;
+            background-color: hsl(171, 100%, 41%);
+            padding: 30px;
+            padding-top: 0;
+        }
+
+        .no-wrap-cell {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="app">
+        
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        <i class="fas fa-satellite-dish"></i> Wajansim
+                    </h1>
+                    <h2 class="subtitle">
+                        Wajan bolik simulation tool.
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="columns">
+            <div class="column">
+                <!-- Parameter -->
+                <div class="box">
+                    <p class="title"><i class="fas fa-tools fa-fw"></i> Variabel</p>
+                    <div class="container">
+                        <div class="field">
+                            <label class="label">Frekuensi Wi-Fi</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select v-model.number="frequency">
+                                        <option value="2400000000">2.4 GHz</option>
+                                        <option value="5000000000">5 GHz</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Diameter Reflektor (cm)</label>
+                            <div class="control">
+                                <input class="input" type="number" v-model.number="dish_diameter">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Kedalaman Reflektor (cm)</label>
+                            <div class="control">
+                                <input class="input" type="number" v-model.number="dish_depth">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Diameter Pipa Feeder (cm)</label>
+                            <div class="control">
+                                <input class="input" type="number" v-model.number="pipe_diameter">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-link" v-on:click="calculate">
+                                    <span class="icon">
+                                        <i class="fas fa-calculator"></i>
+                                      </span>
+                                      <span>Hitung</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil -->
+                <div class="box">
+                    <p class="title">
+                        <i class="fas fa-magic fa-fw"></i> Hasil
+                    </p>
+                    <div class="container">
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <td>Variabel</td>
+                                    <td>Nilai</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in rows">
+                                    <td>{{ item.key }}</td>
+                                    <td class="no-wrap-cell"><span v-html="item.value"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="box">
+                    <p class="title">
+                        <i class="fas fa-info fa-fw"></i> About
+                    </p>
+                    <div class="container">
+                        <p><b>Wajansim</b> dibuat oleh Fahmi Noor Fiqri. Saya <i>software engineer</i> dan <i>data scientist</i>.</p><br>
+                        <p><a href="https://kodesiana.com"><i class="fas fa-globe fa-fw"></i> Kodesiana.com</a></p>
+                        <p><a href="https://github.com/fahminlb33"><i class="fab fa-github fa-fw"></i> GitHub</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-two-thirds">
+                <!-- Simulasi -->
+                <div class="box">
+                    <p class="title"><i class="fas fa-brain fa-fw"></i> Simulasi</p>
+                    <div class="container">
+                        <p class="has-text-centered mb-3">Desain CAD satellite dish</p>
+                        <figure class="image is-3by1">
+                            <img class="image" src="img/satellite_dish.svg">
+                        </figure>
+
+                        <h4 class="title is-4 mt-6">Trasmission Power Simulation</h4>
+                        <p>Simulasi received power pada USB Wi-Fi menggunakan satellite dish di atas. 
+                            Harap perhatikan peringatan pada bagian bantuan.</p><br>
+                        <div class="field">
+                            <label class="label">Transmit power (dBm)</label>
+                            <div class="control">
+                                <input class="input" type="number" v-model.number="transmit_power">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="label is-normal">
+                                <label class="label">Jarak antara pemancar dan penerima (meter)</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded">
+                                        <input class="input" type="number" placeholder="Minimum"
+                                            v-model.number="min_distance">
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <p class="control is-expanded">
+                                        <input class="input" type="number" placeholder="Maksimum"
+                                            v-model.number="max_distance">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <button class="button is-link" v-on:click="run_simulation">
+                                    <span class="icon">
+                                    <i class="fas fa-play"></i>
+                                  </span>
+                                  <span>Jalankan</span></button>
+                            </p>
+                            <p class="control">
+                                <button class="button is-warning is-light" v-on:click="simulation_help">
+                                    <span class="icon">
+                                        <i class="fas fa-question"></i>
+                                      </span>
+                                      <span>Bantuan</span>
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="box has-background-info has-text-light" v-if="simulation">
+                            <p v-if="!simulation.message">
+                                Jarak maksimum: {{ simulation.max_distance }}, {{ simulation.max_distance_power }} dBm |
+                                Jarak optimum: {{ simulation.optimal_distance }}, {{ simulation.optimal_distance_power }} dBm
+                            </p>
+                            <p v-if="simulation.message">{{ simulation.message }}</p>
+                        </div>
+                        <figure class="is-3by1 mt-6">
+                            <canvas id="simulation_chart"></canvas>
+                        </figure>
+
+                        <h4 class="title is-4 mt-6">Referensi</h4>
+                        <p>Fiqri, Fahmi Noor. 2020. Rancang Bangun Sistem Optimasi Penerimaan Wi-Fi
+                            menggunakan Wajan Bolik</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+    </div>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
